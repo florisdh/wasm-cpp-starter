@@ -1,7 +1,7 @@
 const path = require('path');
 const gulp = require("gulp");
 const clean = require("gulp-clean");
-const exec = require('child_process').exec;
+const child_process = require('child_process');
 const through2 = require('through2');
 const Vinyl = require('vinyl');
 
@@ -31,11 +31,12 @@ const collect = () =>
     .pipe(writeFileNames('build.rsp'))
     .pipe(gulp.dest('./'));
 
-const compile = () =>
-    exec('em++ "@build.rsp" -o build/build.wasm', function (err, stdout, stderr) {
-        console.log(err);
-        console.log(stdout);
-        console.log(stderr);
-    });
-
+const compile = (cb) => {
+    /**
+     * Due to issues with nodejs exec errors this is the best way of showing errors for now.
+     */
+    child_process.execSync('em++ "@build.rsp" -o build/build.wasm');
+    cb();
+};
+    
 exports.default = gulp.series([ prepare, collect, compile ]);
