@@ -1,0 +1,29 @@
+{
+  "name": "wasm-cpp-starter",
+  "version": "1.0.0",
+  "description": "Starter project for making webassambly modules using cpp.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/florisdh/wasm-cpp-starter.git"
+  },
+  "keywords": [
+    "Webassambly",
+    "Starter",
+    "C++"
+  ],
+  "author": "Floris de Haan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/florisdh/wasm-cpp-starter/issues"
+  },
+  "homepage": "https://github.com/florisdh/wasm-cpp-starter#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "through2": "^3.0.1",
+    "vinyl": "^2.2.0"
+  }
+}
