@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 const gulp = require("gulp");
 const clean = require("gulp-clean");
@@ -5,8 +6,15 @@ const child_process = require('child_process');
 const through2 = require('through2');
 const Vinyl = require('vinyl');
 
-const prepare = () =>
-    gulp.src('build/**.*', { read: false, allowEmpty: true })
+const prepare = (cb) => {
+    if (!fs.existsSync('build')) {
+        fs.mkdirSync('build');
+    }
+    cb();
+};
+
+const empty = () =>
+    gulp.src('build/**.*', { read: false })
     .pipe(clean());
 
 const writeFileNames = (name) => {
@@ -39,4 +47,4 @@ const compile = (cb) => {
     cb();
 };
     
-exports.default = gulp.series([ prepare, collect, compile ]);
+exports.default = gulp.series([ prepare, empty, collect, compile ]);
