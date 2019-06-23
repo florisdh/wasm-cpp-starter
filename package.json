@@ -15,7 +15,7 @@
     "C++"
   ],
   "author": "Floris de Haan",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/florisdh/wasm-cpp-starter/issues"
   },
