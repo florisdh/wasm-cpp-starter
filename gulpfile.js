@@ -40,11 +40,7 @@ const collect = () =>
     .pipe(gulp.dest('./'));
 
 const compile = (cb) => {
-    /**
-     * Due to issues with nodejs exec errors this is the best way of showing errors for now.
-     */
-    child_process.execSync('em++ "@build.rsp" -o build/build.wasm');
-    cb();
+    child_process.exec('em++ "@build.rsp" -o build/build.wasm', cb);
 };
-    
+
 exports.default = gulp.series([ prepare, empty, collect, compile ]);
