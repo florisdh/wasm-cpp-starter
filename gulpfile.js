@@ -43,4 +43,27 @@ const compile = (cb) => {
     child_process.exec('em++ "@build.rsp" -o build/build.wasm', cb);
 };
 
-exports.default = gulp.series([ prepare, empty, collect, compile ]);
+const compileHtml = (cb) => {
+    child_process.exec('em++ "@build.rsp" -o build/build.html', cb);
+};
+
+const runHtml = (cb) => {
+    child_process.exec('emrun build/build.html', cb);
+};
+
+const watch = () => gulp.watch(
+    ['src/**/*.cpp'],
+    gulp.series([ collect, compile ])
+);
+
+/**
+ * Distribution build
+ */
+exports.default = exports.build =
+    gulp.series([ prepare, empty, collect, compile ]);
+
+/**
+ * Development build
+ */
+exports.serve =
+    gulp.series([ prepare, empty, collect, compileHtml, gulp.parallel([ runHtml, watch ]) ]);

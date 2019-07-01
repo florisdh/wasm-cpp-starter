@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Starter project for making webassambly modules using cpp.",
   "scripts": {
-    "build": "gulp"
+    "build": "gulp",
+    "serve": "gulp serve"
   },
   "repository": {
     "type": "git",
